@@ -1,0 +1,104 @@
+CREATE TABLE estoque(
+id_estoque INT,
+produto VARCHAR(40) NOT NULL,
+quantidade DOUBLE
+);
+
+CREATE TABLE produto(
+id_produto INT,
+valor DECIMAL(6,2),
+marca VARCHAR(40) NOT NULL,
+modelo VARCHAR(40) NOT NULL
+);
+
+CREATE TABLE departamento(
+id_departamento INT,
+função VARCHAR(40) NOT NULL,
+salario DOUBLE,
+nome_setor VARCHAR(40) NOT NULL
+);
+
+CREATE TABLE fornecedor(
+id_fornecedor INT NOT NULL, 
+nome VARCHAR(40) NOT NULL,
+telefone CHAR(11) NOT NULL,
+UF CHAR(2) NOT NULL,
+produto VARCHAR(20) NOT NULL,
+valor DECIMAL (6,2),
+PRIMARY KEY (id_fornecedor)
+);
+
+CREATE TABLE Funcionarios(
+id_Funcionarios INT NOT NULL,
+nome VARCHAR(40) NOT NULL,
+email VARCHAR(40) NOT NULL UNIQUE,
+cpf CHAR(14) NOT NULL,
+telefone CHAR(11) NOT NULL,
+data_de_admissão DATE,
+PRIMARY KEY (id_Funcionarios)
+);
+
+ INSERT INTO estoque (id_estoque, produto, quantidade)
+VALUES
+(1, 'blusa', 10),
+(2, 'casaco', 5),
+(3, 'calça', 7),
+(4, 'jaqueta', 9),
+(5, 'biquini', 3);
+
+SELECT * FROM estoque;
+
+---------------------------------------------------------
+ INSERT INTO produto (id_produto, valor, marca, modelo)
+VALUES
+(1, 35,00, 'Gucci', 'P'),
+(2, 190,00, 'Zara', 'M'),
+(3, 85,00, 'Lacoste', 'G'),
+(4, '186,00', 'Nike', 'P'),
+(5, '50,00', 'Fabiola Modas', 'M');
+
+SELECT * FROM produto;
+
+--------------------------------------------------------
+INSERT INTO Funcionarios (id_Funcionarios, nome, email, cpf, telefone, data_de_admissão)
+VALUES
+(1, 'Leonardo Paixão', 'leopxz@gmail.com', '11342598422', 81998346398, '1994-11-03'),
+(2, 'Kariny Paixão', 'karinyarj@gmail.com', '11234473529', 81998346398, '1999-05-25'),
+(3, 'Maria Luiza Paixão', 'marialuiza@gmail.com', '71133455525', 81997426398, '2004-01-07'),
+(4, 'Marina paixão', 'mahjuu@gmail.com', '91133413599', 81998342548, '2012-08-25');
+
+--------------------------------------------------------------------------------------------
+INSERT INTO departamento (id_departamento, função, salario, nome_setor)
+VALUES
+(1, 'gerente', 4500.00, 'gerencia'),
+(2, 'supervisor(a)', 3200.00, 'loja'),
+(3, 'vendedora', 1500.00, 'comercial'),
+(4, 'auxiliar_vendas', 1200.00, 'auxiliar');
+
+SELECT * FROM departamento;
+
+--------------------------------------------------------------------------------------------
+INSERT INTO fornecedor (id_fornecedor, nome, telefone, UF, produto, valor)
+VALUES
+(6, 'José', 38994258663, 'CE', 'calça', 50.00),
+(4, 'João', 22994258663, 'SP', 'blusa', 15.00),
+(1, 'Moises', 19425866353, 'PE', 'casaco', 40.00),
+(2, 'Reginaldo', 1199425847, 'RJ', 'jaqueta', 70.00),
+(5, 'Adriano', 1194568663, 'SP', 'calça', 55.00),
+(3, 'Paulo', 8199435263, 'PE', 'biquini', 20.00);
+
+SELECT * FROM Funcionarios; -- Executa todas as informaões da tabela
+
+SELECT nome, cpf, telefone FROM Funcionarios; -- Executa apenas as informações selecionadas
+
+SELECT * FROM Funcionarios -- junção com o Order by, selecionando os dois, ele exibe a tabela que foi informada do maior para o menor
+ORDER BY data_de_admissão;
+
+SELECT * FROM fornecedor -- Seleciona a coluna escolhida "fornecedor" e busca apenas pelo UF, vai exibir apenas pessoas do estado de PE.
+WHERE UF = 'PE'; 
+
+UPDATE fornecedor  -- Atualiza valores na tabela de acordo com a coluna selecionada.
+SET valor = 30.0
+WHERE id_fornecedor = 3;
+
+
